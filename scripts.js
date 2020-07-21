@@ -6,6 +6,7 @@ $(document).ready(function(){
    const second = $('.second');
    const third = $('.third');
    console.log(third.css("bottom"));
+   $(".d1").css("background-color", "#bdc3c7");
 
 
    if (document.addEventListener) {
@@ -25,11 +26,49 @@ $(document).ready(function(){
       document.attachEvent("onmousewheel", onWheel);
     }
 
+    $(".down").on("click", function(){
+      var secBottom = second.css('bottom');
+      second.css('bottom', '0');
+      $(".d2").css("background-color", "#bdc3c7");
+       $(".d3").css("background-color", "#fff");
+      $(".second h2").css("opacity", "1");
+      $(".second ul").css("opacity", "1");
+      $(".second .fill1").css("width", "90%");
+      $(".second .fill2").css("width", "90%");
+      $(".second .fill3").css("width", "60%");
+      $(".second .fill4").css("width", "65%");
+      $(".second .fill5").css("width", "60%");
+      if (secBottom == "0px"){
+         third.css("bottom", "0px");
+         $(".d3").css("background-color", "#bdc3c7");
+      }
+    });
+    $(".up").on("click", function(){
+      var secBottom = second.css('bottom');
+      if (third.css("bottom") == "0px"){
+         third.css("bottom", "-100%");
+         $(".d3").css("background-color", "#fff");
+      }
+      if (third.css("bottom") == "-" + windHeight + "px"){
+         second.css('bottom', '-100%');
+         $(".d3").css("background-color", "#000");
+         $(".d2").css("background-color", "#000");
+         $(".second h2").css("opacity", "0");
+         $(".second ul").css("opacity", "0");
+         $(".second .fill1").css("width", "0%");
+         $(".second .fill2").css("width", "0%");
+         $(".second .fill3").css("width", "0%");
+         $(".second .fill4").css("width", "0%");
+         $(".second .fill5").css("width", "0%");
+      }
+    });
 
     function onWheel(event){
       var secBottom = second.css('bottom');
       if(event.deltaY >= 0){
        second.css('bottom', '0');
+       $(".d2").css("background-color", "#bdc3c7");
+       $(".d3").css("background-color", "#fff");
        if (secBottom == "0px"){
          $(".second h2").css("opacity", "1");
          $(".second ul").css("opacity", "1");
@@ -66,13 +105,17 @@ $(document).ready(function(){
       }
       if ($(".second .fill5").width() > 100){
          third.css("bottom", "0px");
+         $(".d3").css("background-color", "#bdc3c7");
       }
       }else{
          if (third.css("bottom") == "0px"){
             third.css("bottom", "-100%");
+            $(".d3").css("background-color", "#fff");
          }
          if (third.css("bottom") == "-" + windHeight + "px"){
             second.css('bottom', '-100%');
+            $(".d3").css("background-color", "#000");
+            $(".d2").css("background-color", "#000");
             $(".second h2").css("opacity", "0");
             $(".second ul").css("opacity", "0");
             $(".second .fill1").css("width", "0%");
@@ -84,9 +127,7 @@ $(document).ready(function(){
       }
    
    }
-   // while($(".second .fill1").width() < 500){
-   //    $(".second .fill2").css("width", "90%");
-   // }
+
    $(".mail-btn").on("click touchstart", function () {
       if ($(".third input").val() != "" && $(".third textarea").val() != ""){
          $(this).addClass("fly");
